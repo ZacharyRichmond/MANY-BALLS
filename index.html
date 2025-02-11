@@ -113,7 +113,6 @@ function stopClip(p1,p2,tr){
         for(var j = i+1;j<ball.length;j++){
         if(mag(subtractv(ball[i].pos,ball[j].pos))<ball[i].r+ball[j].r){
          stopClip(ball[i].pos,ball[j].pos,ball[j].r+ball[i].r);
-          var e=0.1;
           temp= handleCollisions(ball[i].pos,ball[j].pos,ball[i].vel,ball[j].vel,ball[i].m,ball[j].m,e)[1];
           ball[i].vel = handleCollisions(ball[i].pos,ball[j].pos,ball[i].vel,ball[j].vel,ball[i].m,ball[j].m,e)[0];
           ball[j].vel = temp;
@@ -132,22 +131,22 @@ function stopClip(p1,p2,tr){
 
     if (ball[i].pos.x < 0.0+ball[i].r) {
       ball[i].pos.x = 0.0+ball[i].r;
-      ball[i].vel.x = -ball[i].vel.x;
+      ball[i].vel.x = -ball[i].vel.x*e;
       bounce++;
     }
     if (ball[i].pos.x > simWidth-ball[i].r) {
       ball[i].pos.x = simWidth-ball[i].r;
-      ball[i].vel.x= -ball[i].vel.x;
+      ball[i].vel.x= -ball[i].vel.x*e;
       bounce++;
     }
     if (ball[i].pos.y < 0.0+ball[i].r) {
       ball[i].pos.y = 0.0+ball[i].r;
-      ball[i].vel.y = -ball[i].vel.y;
+      ball[i].vel.y = -ball[i].vel.y*e;
       bounce++;
     }
     if (ball[i].pos.y > simHeight-ball[i].r) {
       ball[i].pos.y =simHeight-ball[i].r;
-      ball[i].vel.y = -ball[i].vel.y;
+      ball[i].vel.y = -ball[i].vel.y*e;
       bounce++;
     }
   }
@@ -240,11 +239,12 @@ var hor=0;
     draw();
     requestAnimationFrame(update);
   }
+    var e=0.1;
 addBall(20,40,0.6,0,0,999999999099999999);
-  addBall(20,20,2.5,0,0,9999999999999999);
+  addBall(20,15,2.5,0,0,9999999999999999);
    for(var i =0;i<39;i++){
      for(var j =0;j<39;j++){
-     addBall(15+j*0.4,5+i*0.4,0.2,0,0,0.01);
+     addBall(15+j*0.4,i*0.4,0.2,0,0,0.01);
      }}
     
  update();
