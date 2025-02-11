@@ -161,8 +161,30 @@ var hor=0;
     var down =false;
     var speedy=false;
     var speed=150;
+     var a=false;
+    var d=false;
+    var reee=0;
+function changeRadii(ch){
+      for(var i =2;i<ball.length;i++){
+        ball[i].r+=ch;
+      }
+    }
+
+
+    
   function update() {
    // console.log("hi");
+  if(a&&d){
+    reee=0;
+  }
+    else if(a){
+      reee=-0.1;
+    }
+    else if(d){
+      reee=0.1;
+    }
+  changeRadii(reee*0.5);
+    
     if(speedy){
       speed=5*150;
     }
@@ -214,8 +236,14 @@ var hor=0;
       else if(event.keyCode == 49) {
           speedy=true;
         }
+       else if(event.keyCode == 65) {
+          a=true;
+        }
+       else if(event.keyCode == 68) {
+          d=true;
+        }
      });
-     
+
     document.addEventListener('keyup', function(event) {
         if(event.keyCode == 37) {
          left=false;
@@ -232,6 +260,12 @@ var hor=0;
         }
        else if(event.keyCode == 49) {
           speedy=false;
+        }
+       else if(event.keyCode == 65) {
+          a=false;
+        }
+       else if(event.keyCode == 68) {
+          d=false;
         }
      });
     simulate();
