@@ -112,7 +112,7 @@ function stopClip(p1,p2,tr){
       for(var i = 0;i<ball.length;i++){
         for(var j = i+1;j<ball.length;j++){
         if(mag(subtractv(ball[i].pos,ball[j].pos))<ball[i].r+ball[j].r){
-         stopClip(ball[i].pos,ball[j].pos,ball[j].r+ball[i].r);
+         //stopClip(ball[i].pos,ball[j].pos,ball[j].r+ball[i].r);
           temp= handleCollisions(ball[i].pos,ball[j].pos,ball[i].vel,ball[j].vel,ball[i].m,ball[j].m,e)[1];
           ball[i].vel = handleCollisions(ball[i].pos,ball[j].pos,ball[i].vel,ball[j].vel,ball[i].m,ball[j].m,e)[0];
           ball[j].vel = temp;
@@ -242,9 +242,9 @@ var hor=0;
     var e=0.1;
 addBall(20,40,0.6,0,0,999999999099999999);
   addBall(20,15,2.5,0,0,9999999999999999);
-   for(var i =0;i<39;i++){
-     for(var j =0;j<39;j++){
-     addBall(15+j*0.4,i*0.4,0.2,0,0,0.01);
+   for(var i =0;i<100;i++){
+     for(var j =0;j<100;j++){
+     addBall(15+j*0.205,0.1+i*0.205,0.1,0,0,0.01);
      }}
     
  update();
